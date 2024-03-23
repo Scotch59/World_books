@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
+
 # жанры книг
 class Genre(models.Model):
     name = models.CharField(max_length=200,
@@ -16,6 +17,7 @@ class Language(models.Model):
     name = models.CharField(max_length=20,
                             help_text="Введите язык книги",
                             verbose_name="Язык книги")
+
 
     def __str__(self):
         return self.name
@@ -136,5 +138,6 @@ class BookInstance(models.Model):
     # метаданные
     class Meta:
         ordering = ["due_back"]
+
     def __str__(self):
         return '%s %s %s' % (self.inv_nom, self.book, self.status)

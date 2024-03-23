@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qx7=vlw6ot-4j$ok11!+r5!&4$&m78^@w_%2$!=+@24yt#8pws'
+SECRET_KEY = 'django-insecure-qx7=vlw6ot-4j$ok"!+r5!&4$&m78^@w_%2$!=+@24yt#8pws'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'WebBooks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR/'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR/'db2.sqlite3'),
     }
 }
 
