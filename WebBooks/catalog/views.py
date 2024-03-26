@@ -1,7 +1,10 @@
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from .models import Author, Book, BookInstance
 from django.views.generic import ListView, DetailView
-from django.http import HttpResponse
+from .forms import Form_add_author
+from django.urls import reverse
+
 
 
 class BookListView(ListView):
@@ -51,7 +54,7 @@ def index(request):
                'authors': authors, 'num_authors': num_authors, 'num_visit': num_visit}
     return render(request, 'catalog/index.html', context)
 
-
+# функция представления сведении
 def about(request):
     text_head = 'Сведения о компании'
     name = 'ООО «Интеллектуальные информационные системы»'
@@ -63,6 +66,7 @@ def about(request):
     return render(request, 'catalog/about.html', context)
 
 
+# функция представления контактных данных
 def contact(request):
     text_head = 'Контакты'
     name = 'ООО «Интеллектуальные информационные системы»'
@@ -71,3 +75,48 @@ def contact(request):
     email = 'iis_info@mail.ru'
     context = {'text_head': text_head, 'name': name, 'address': address, 'tel': tel, 'email': email}
     return render(request, 'catalog/contact.html', context)
+
+
+# функция редактирования информации об авторах
+def edit_authors(request):
+    author = Author.objects.all()
+    context = {'author': author}
+    return render(request, 'catalog/edit_authors.html', context)
+
+
+# функция добавления нового автора, связанная с вышеуказанной функцией
+def add_author(request):
+    if request.method == 'POST':
+        form = Form_add_author(request.POST, request.FILES)
+        if form.is_valid():
+            # получить данные из формы
+            first_name = form.cleaned_data.get("first_name")
+            last_name = form.cleaned_data.get("last_name")
+            date_of_birth = form.cleaned_data.get("date_of_birth")
+            about = form.cleaned_data.get("about")
+            photo = form.cleaned_data.get("photo")
+            # создаем объект для записи в БД
+            obj = Author.objects.create(
+                first_name=first_name,
+                last_name=last_name,
+                date_of_birth=date_of_birth,
+                about=about,
+                photo=photo)
+            # сохранение полученных данных
+            obj.save()
+            # загрузить страницу сос списком авторов
+            return HttpResponseRedirect(reverse('authors-list'))
+    else:
+        form = Form_add_author
+        context = {"form": form}
+        return render(request, 'catalog/authors_add.html', context)
+
+
+# Удаление авторов из БД
+def delete(request, id):
+    try:
+        author = Author.objects.get(id=id)
+        author.delete()
+        return HttpResponseRedirect("/edit_authors/")
+    except:
+        return HttpResponseNotFound("<h2>Автор не найден</h2>")

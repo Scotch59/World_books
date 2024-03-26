@@ -1,6 +1,6 @@
 /*!
   * Bootstrap v5.2.3 (https://getbootstrap.com/)
-  * Copyright 20"-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Copyright 2011-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
@@ -2028,7 +2028,7 @@
   }
 
   function isShadowRoot(node) {
-    // IE " has no ShadowRoot
+    // IE 11 has no ShadowRoot
     if (typeof ShadowRoot === 'undefined') {
       return false;
     }
@@ -2277,7 +2277,7 @@
     var isIE = /Trident/i.test(getUAString());
 
     if (isIE && isHTMLElement(element)) {
-      // In IE 9, 10 and " fixed elements containing block is always established by the viewport
+      // In IE 9, 10 and 11 fixed elements containing block is always established by the viewport
       var elementCss = getComputedStyle$1(element);
 
       if (elementCss.position === 'fixed') {
@@ -2691,7 +2691,7 @@
     // it's not an issue. I don't think anyone ever specifies width on <html>
     // anyway.
     // Browsers where the left scrollbar doesn't cause an issue report `0` for
-    // this (e.g. Edge 2019, IE", Safari)
+    // this (e.g. Edge 2019, IE11, Safari)
     return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
   }
 
@@ -3562,7 +3562,7 @@
         data: Object.assign({}, existing.data, current.data)
       }) : current;
       return merged;
-    }, {}); // IE" does not support Object.values
+    }, {}); // IE11 does not support Object.values
 
     return Object.keys(merged).map(function (key) {
       return merged[key];
@@ -3886,7 +3886,7 @@
       super(element, config);
       this._popper = null;
       this._parent = this._element.parentNode; // dropdown wrapper
-      // todo: v6 revert #370" & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+      // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
 
       this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
       this._inNavbar = this._detectNavbar();
@@ -4204,7 +4204,7 @@
         return;
       }
 
-      event.preventDefault(); // todo: v6 revert #370" & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+      event.preventDefault(); // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
 
       const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$3) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$3, event.delegateTarget.parentNode);
       const instance = Dropdown.getOrCreateInstance(getToggleButton);
