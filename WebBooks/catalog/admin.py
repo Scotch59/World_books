@@ -46,3 +46,5 @@ admin.site.register(Genre)
 admin.site.register(Language)
 admin.site.register(Publisher)
 admin.site.register(Status)
+
+
