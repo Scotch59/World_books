@@ -4,7 +4,6 @@ from django.views.generic import ListView, DetailView
 from django.http import HttpResponse
 
 
-
 class BookListView(ListView):
     model = Book
     context_object_name = 'books'
@@ -27,20 +26,29 @@ class AuthorDetailView(DetailView):
 
 def index(request):
     text_head = 'На нашем сайте вы можете получить книги в электроном виде'
+
     # Данные о книгах и их количестве
     books = Book.objects.all()
     num_books = Book.objects.all().count()
+
     # Данные об экземплярах книг в БД
     num_instances = BookInstance.objects.all().count()
+
     # Доступные книги (статус = На складе)
     num_instances_available = BookInstance.objects.filter(status__exact=2).count()
+
     # Данные об авторах книг
     authors = Author.objects
     num_authors = Author.objects.count()
+
+    # Число посещений этого Views, подсчитанное в переменной session
+    num_visit = request.session.get('num_visit', 0)
+    request.session['num_visit'] = num_visit + 1
+
     # Словарь для передачи данных в шаблон index.html
     context = {'text_head': text_head, 'books': books, 'num_books': num_books,
                'num_instances': num_instances, 'num_instances_available': num_instances_available,
-               'authors': authors, 'num_authors': num_authors}
+               'authors': authors, 'num_authors': num_authors, 'num_visit': num_visit}
     return render(request, 'catalog/index.html', context)
 
 

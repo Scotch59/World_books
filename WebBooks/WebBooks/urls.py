@@ -28,3 +28,9 @@ urlpatterns = [
 if settings.DEBUG:
     if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# добавлено для регистрации входа пользователей
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls'))
+]
