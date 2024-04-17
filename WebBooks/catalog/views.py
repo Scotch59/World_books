@@ -1,10 +1,10 @@
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from .models import Author, Book, BookInstance
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .forms import Form_add_author
-from django.urls import reverse
-
+from django.urls import reverse, reverse_lazy
+from django import forms
 
 
 class BookListView(ListView):
@@ -25,6 +25,32 @@ class AuthorListView(ListView):
 
 class AuthorDetailView(DetailView):
     model = Author
+
+
+# форма для изменения сведений об авторах
+class Form_edit_author(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = '__all__'
+
+
+# Класс для создания БД новой записи о книге
+class BookCreate(CreateView):
+    model =Book
+    fields = '__all__'
+    success_url = reverse_lazy('edit_books')
+
+
+# Класс для обновления в БД записи о книге
+class BookUpdate(UpdateView):
+    model = Book
+    fields = '__all__'
+    success_url = reverse_lazy('edit_books')
+
+# класс для удаления из БД записи о книге
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('edit_books')
 
 
 def index(request):
@@ -120,3 +146,25 @@ def delete(request, id):
         return HttpResponseRedirect("/edit_authors/")
     except:
         return HttpResponseNotFound("<h2>Автор не найден</h2>")
+
+
+# изменение данных об авторе в БД
+def edit_author(request, id):
+    author = Author.objects.get(id=id)
+    if request.method == 'POST':
+        instance = Author.objects.get(pk=id)
+        form = Form_edit_author(request.POST, request.FILES, instance=instance)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/edit_authors/")
+    else:
+        form = Form_edit_author(instance=author)
+        content = {'form': form}
+        return render(request, "catalog/edit_author.html", content)
+
+
+# вызов страницы для редактирования книг
+def edit_books(request):
+    book = Book.objects.all()
+    context = {'book': book}
+    return render(request, "catalog/edit_books.html", context)

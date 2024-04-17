@@ -15,6 +15,11 @@ urlpatterns = [
     path('edit_authors/', views.edit_authors, name='edit_authors'),
     path('authors_add/', views.add_author, name='author_add'),
     path('delete/<int:id>/', views.delete, name='delete'),
+    path('edit_author/<int:id>/', views.edit_author, name='edit_author'),
+    path('edit_books/', views.edit_books, name='edit_books'),
+    path('book/create', views.BookCreate.as_view(), name='book_create'),
+    path('book/update/<int:pk>/', views.BookUpdate.as_view(), name='book_update'),
+    path('book/delete/<int:pk>/', views.BookDelete.as_view(), name='book_delete'),
 ]
 
 admin.site.site_header = 'Панель администрирования'
