@@ -1,26 +1,23 @@
 {% extends "catalog/base.html" %}
-{% block title %} Мир книг {% endblock title %}
-{% block header %}
-    <h5>{{ text_head }}</h5>
-{% endblock header %}
+{% block title %}Главная страница{% endblock title %}
 {% block content %}
     <div class="container-fluid my-2">
-        <div class="row bg-success text-white mx-2">
+        <div class="row text-#19b7e3 mx-2">
             <div class="col text-center">
-                <p> Добро пожаловать на сайт <em> Мир книг </em>. Это очень
+                <h4> Добро пожаловать на сайт «Моя библиотека». Это очень
                 простой веб-сайт, написанный на Django и Bootstrap.
-                Разработан на Pythonв качестве учебного примера с использование PyCharm.</p>
+                Разработан на Python в качестве учебного примера с использование PyCharm.</h4>
             </div>
         </div>
-        <div class="row text-center text-dark lh-2">
+        <div class="row text-center text-#19b7e3 lh-2">
             <h4> Сведения из базы данных </h4>
         </div>
-        <div class="row my-2 text-white">
+        <div class="row my-2 text-#19b7e3">
             <div class="col mx-2 bg-primary"> Количество книг - {{ num_books }} </div>
-            <div class="col mx-2 bg-primary"> На складе в наличии - {{ num_instances }}</div>
+            <div class="col mx-2 bg-primary"> В наличии - {{ num_instances }}</div>
             <div class="col mx-2 bg-primary"> Количество авторов - {{ num_authors }}</div>
         </div>
-        <div class="row text-center text-dark lh-2">
+        <div class="row text-center text-#19b7e3 lh-2">
             <h3> Книги </h3>
         </div>
         {% if num_books > 0 %}
@@ -37,8 +34,8 @@
                 {% endfor %}
             </div>
         {% endif %}
-        <div class="row text-center text-dark lh-2">
-            <h6>Число посещений данной страницы - {{ num_visit }}</h6>
+        <div class="row text-center text-#19b7e3 lh-2">
+            <h6>Это простой счетчик, для подсчета количества посещений - {{ num_visit }}</h6>
         </div>
     </div>
 {% endblock content %}

@@ -36,7 +36,7 @@ class Form_edit_author(forms.ModelForm):
 
 # Класс для создания БД новой записи о книге
 class BookCreate(CreateView):
-    model =Book
+    model = Book
     fields = '__all__'
     success_url = reverse_lazy('edit_books')
 

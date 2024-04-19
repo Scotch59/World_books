@@ -1,6 +1,8 @@
 from django.urls import path, include
 from .import views
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -20,7 +22,7 @@ urlpatterns = [
     path('book/create', views.BookCreate.as_view(), name='book_create'),
     path('book/update/<int:pk>/', views.BookUpdate.as_view(), name='book_update'),
     path('book/delete/<int:pk>/', views.BookDelete.as_view(), name='book_delete'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 admin.site.site_header = 'Панель администрирования'
 admin.site.index_title = 'Сайт «Мир книг»'

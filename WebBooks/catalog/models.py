@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 
 
+
+
 # жанры книг
 class Genre(models.Model):
     name = models.CharField(max_length=200,
