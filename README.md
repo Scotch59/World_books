@@ -12,8 +12,9 @@ This project is a simple library that contains books that I have read or am abou
 I will briefly describe the structure of the site’s data models and attach a table!
 
 
+![Скриншот 24-04-2024 191605](https://github.com/Scotch59/World_books/assets/143262863/787edb6f-690b-49fc-a5a5-229c3104dba8)
 
-[Скриншот 24-04-2024 191605](https://github.com/Scotch59/World_books/assets/143262863/54297a97-a908-4759-9305-181d2b32449c)
+
 ![главная страница](https://github.com/Scotch59/World_books/assets/143262863/283cee25-ac7b-4868-bad6-955ca8264eea)
 ![инфо](https://github.com/Scotch59/World_books/assets/143262863/93b6814a-28fa-44d1-bbcf-082338fbec14)
 ![контакты](https://github.com/Scotch59/World_books/assets/143262863/5e6b224c-52fd-4fc5-96a9-09d25d94a439)
