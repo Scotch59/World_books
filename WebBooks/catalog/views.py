@@ -10,7 +10,7 @@ from django import forms
 class BookListView(ListView):
     model = Book
     context_object_name = 'books'
-    paginate_by = 5
+    paginate_by = 7
 
 
 class BookDetailView(DetailView):
@@ -20,7 +20,7 @@ class BookDetailView(DetailView):
 
 class AuthorListView(ListView):
     model = Author
-    paginate_by = 5
+    paginate_by = 7
 
 
 class AuthorDetailView(DetailView):
@@ -100,7 +100,8 @@ def about(request):
              ' Не надо бояться тяжелой задачи, а надо бояться дешевой удачи,' \
              ' не надо бояться быть честным и битым, а надо бояться быть лживым и сытым.' \
              ' Умейте всем страхам в глаза рассмеяться, лишь собственной трусости надо бояться.'
-    motiv2 = ''
+    motiv2 = 'Любой человек, даже без образования, может многому научиться сам и достичь' \
+             'невероятного уровня профессионализма, преодолевая социальную дискриминацию'
     motiv3 = ''
     motiv4 = ''
     context = {'text_head': text_head, 'name': name, 'rabl1': rabl1, 'rabl2': rabl2, 'rabl3': rabl3, 'rabl4': rabl4,
